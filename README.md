@@ -37,9 +37,13 @@ Abra o arquivo do script (ex: processarContatos.js) e preencha as constantes no 
 🚨 AVISO DE SEGURANÇA: Nunca preencha estas informações em um arquivo que será enviado para um repositório público. Este método é seguro apenas para uso local ou em repositórios privados.
 
 const BITRIX_WEBHOOK = "[https://seusite.bitrix24.com.br/rest/1/abcdef123456/](https://seusite.bitrix24.com.br/rest/1/abcdef123456/)"; // SEU WEBHOOK AQUI
+
 const JSON_PATH = "./dados_para_bitrix.json";
+
 const DEAL_TITLE_BASE = "Prospecção Indicada"; // Título do Negócio
+
 const PIPELINE_ID = 89; // 🎯 ID do Funil
+
 const STAGE_ID = "C89:UC_HPXUQG"; // 🎯 Estágio do funil
 
 4. ▶️ Execução
