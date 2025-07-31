@@ -1,75 +1,56 @@
-Sincronizador de Contatos e Negócios para Bitrix24
-Este é um script automatizado em Node.js projetado para ler uma lista de contatos de um arquivo JSON, verificar sua existência no Bitrix24 e, em seguida, criar ou atualizar registros de Contato e Negócio (Deal) de forma inteligente.
+<div align="center">
+<img src="https://www.google.com/search?q=https://raw.githubusercontent.com/MartsTech/MartsTech/master/assets/wave.gif" width="35px" />
+<h1>🤖 Sincronizador Inteligente para Bitrix24 🤖</h1>
+<p>
+<em>Um script para automatizar a criação de Contatos e Negócios no Bitrix24, lendo dados de um arquivo JSON, evitando duplicidade e organizando seu funil de vendas de forma eficiente.</em>
+</p>
+<p>
+<a href="https://nodejs.org/en/about/releases/"><img src="https://www.google.com/search?q=https://img.shields.io/badge/Node.js-16.x%2B-green.svg" alt="Node.js"></a>
+<a href="https://www.npmjs.com/package/axios"><img src="https://www.google.com/search?q=https://img.shields.io/badge/depend%C3%AAncia-axios-blue" alt="Dependencies"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://www.google.com/search?q=https://img.shields.io/badge/licen%C3%A7a-MIT-lightgrey" alt="License"></a>
+</p>
+</div>
 
-O objetivo principal é evitar a duplicação de contatos e garantir que novas oportunidades de prospecção sejam inseridas corretamente em um funil de vendas específico.
+Este script automatizado lê uma lista de contatos de um arquivo JSON, verifica sua existência no Bitrix24 e, em seguida, cria um Contato (se necessário) e um Negócio (Deal), preenchendo campos para manter seu CRM sempre atualizado.
 
-✨ Funcionalidades
-Leitura de Dados Locais: Lê os contatos a partir de um arquivo dados_extraidos_corrigido.json.
+✨ Funcionalidades Principais
+🔎 Verificação Anti-Duplicação: Usa o telefone para consultar a API do Bitrix24 e evitar a criação de contatos duplicados.
 
-Verificação Anti-Duplicação: Consulta a API do Bitrix24 para verificar se um contato já existe com base no número de telefone.
+✍️ Criação Inteligente de Contatos: Se um contato não existe, ele é criado com o nome completo separado automaticamente em "Nome" e "Sobrenome".
 
-Criação Inteligente de Contatos:
+🎯 Criação Direcionada de Negócios (Deals): Cria um novo negócio para cada contato e o insere diretamente no pipeline e estágio que você definir.
 
-Se um contato não existe, ele é criado.
+🏢 Associação de Empresas: Identifica e associa a empresa de um contato existente ao novo negócio.
 
-O nome completo é separado automaticamente em "Nome" e "Sobrenome" para melhor organização no CRM.
+🛡️ Segurança da API: Utiliza delays entre as requisições para não sobrecarregar a API do Bitrix24.
 
-Criação de Negócios (Deals):
+🚀 Guia Rápido de Uso
+1. ✅ Pré-requisitos
+Node.js: Versão 16 ou superior.
 
-Cria um novo negócio para cada contato processado (seja ele novo ou existente).
+Arquivo de Dados: Um arquivo JSON (ex: dados_para_bitrix.json) na mesma pasta do projeto.
 
-Associa o negócio ao contato e, se existir, à empresa vinculada.
-
-O título do negócio é gerado dinamicamente com o nome do contato e da empresa.
-
-O negócio é inserido diretamente em um pipeline e estágio específicos.
-
-Segurança da API: Utiliza delays entre as requisições para não sobrecarregar a API do Bitrix24 e evitar bloqueios.
-
-🚀 Como Usar
-Siga os passos abaixo para configurar e executar o script.
-
-1. Pré-requisitos
-Node.js: Certifique-se de ter o Node.js instalado em sua máquina. (Versão 16 ou superior recomendada).
-
-Arquivo de Dados: O arquivo dados_extraidos_corrigido.json deve estar presente na mesma pasta do script.
-
-2. Instalação
+2. 📦 Instalação
 Abra o terminal na pasta do projeto e instale a única dependência necessária, o axios:
 
-Bash
-
 npm install axios
-3. Configuração
-Antes de rodar, você precisa configurar as constantes no topo do arquivo do script (processarContatosFinal.js):
 
-Constante	Descrição	Exemplo
-BITRIX_WEBHOOK	(Obrigatório) A URL do seu webhook de entrada do Bitrix24 com permissão para CRM. Você a obtém em Desenvolvedores -> Outro -> Webhook de entrada.	'https://seusite.bitrix24.com.br/rest/1/abcdef123456/'
-JSON_PATH	O caminho para o arquivo de dados. O padrão é o arquivo que geramos.	'./dados_extraidos_corrigido.json'
-DEAL_TITLE_BASE	O texto base para o título de todos os negócios criados.	'Prospeccao_indicação'
-PIPELINE_ID	O ID numérico do funil (pipeline) de vendas onde os negócios serão criados.	89
-STAGE_ID	O ID do estágio dentro do funil de destino. Geralmente no formato C[ID_PIPELINE]:[NOME_DO_ESTAGIO].	'C89:PREPAYMENT_INVOIC'
+3. ⚙️ Configuração
+Abra o arquivo do script (ex: processarContatos.js) e preencha as constantes no topo do arquivo com os seus dados.
 
-Exportar para as Planilhas
-4. Execução
-Com tudo configurado, execute o script com o seguinte comando no terminal:
+🚨 AVISO DE SEGURANÇA: Nunca preencha estas informações em um arquivo que será enviado para um repositório público. Este método é seguro apenas para uso local ou em repositórios privados.
 
-Bash
+const BITRIX_WEBHOOK = "[https://seusite.bitrix24.com.br/rest/1/abcdef123456/](https://seusite.bitrix24.com.br/rest/1/abcdef123456/)"; // SEU WEBHOOK AQUI
+const JSON_PATH = "./dados_para_bitrix.json";
+const DEAL_TITLE_BASE = "Prospecção Indicada"; // Título do Negócio
+const PIPELINE_ID = 89; // 🎯 ID do Funil
+const STAGE_ID = "C89:UC_HPXUQG"; // 🎯 Estágio do funil
 
-node processarContatosFinal.js
-O script começará a processar cada contato, exibindo o progresso e os resultados de cada operação diretamente no console.
+4. ▶️ Execução
+Com as constantes preenchidas, rode o script no terminal:
 
-⚙️ Lógica do Processamento
-O script segue um fluxo sequencial e cuidadoso para cada contato encontrado no arquivo JSON:
+node processarContatos.js
 
-Busca: O telefone do contato é usado para fazer uma busca na API do Bitrix24.
+Acompanhe o progresso em tempo real pelo console!
 
-Decisão:
-
-Se o contato é encontrado: O script pega o ID, nome, sobrenome e ID da empresa existentes.
-
-Se o contato não é encontrado: O script o cria, separando o nome completo em primeiro nome e sobrenome.
-
-Busca de Empresa (se aplicável): Se o contato existente possuir um ID de empresa, o script faz uma nova consulta para obter o nome da empresa.
-
-Criação do Negócio: Por fim, o script cria um novo negócio com um título dinâmico (Prospeccao_indicação - Nome do Contato (Nome da Empresa)) e o insere diretamente no pipeline e estágio configurados.
+<div align="center"> <p>Criado por Lucas Stuker.</p> </div>
