@@ -1,14 +1,10 @@
 <div align="center">
-<img src="https://www.google.com/search?q=https://raw.githubusercontent.com/MartsTech/MartsTech/master/assets/wave.gif" width="35px" />
+
 <h1>🤖 Sincronizador Inteligente para Bitrix24 🤖</h1>
 <p>
 <em>Um script para automatizar a criação de Contatos e Negócios no Bitrix24, lendo dados de um arquivo JSON, evitando duplicidade e organizando seu funil de vendas de forma eficiente.</em>
 </p>
-<p>
-<a href="https://nodejs.org/en/about/releases/"><img src="https://www.google.com/search?q=https://img.shields.io/badge/Node.js-16.x%2B-green.svg" alt="Node.js"></a>
-<a href="https://www.npmjs.com/package/axios"><img src="https://www.google.com/search?q=https://img.shields.io/badge/depend%C3%AAncia-axios-blue" alt="Dependencies"></a>
-<a href="https://opensource.org/licenses/MIT"><img src="https://www.google.com/search?q=https://img.shields.io/badge/licen%C3%A7a-MIT-lightgrey" alt="License"></a>
-</p>
+
 </div>
 
 Este script automatizado lê uma lista de contatos de um arquivo JSON, verifica sua existência no Bitrix24 e, em seguida, cria um Contato (se necessário) e um Negócio (Deal), preenchendo campos para manter seu CRM sempre atualizado.
