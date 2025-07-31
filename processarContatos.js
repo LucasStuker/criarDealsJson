@@ -1,11 +1,12 @@
 import fs from "fs";
 import axios from "axios";
 
-const BITRIX_WEBHOOK = ""; // SEU WEBHOOK AQUI
-const JSON_PATH = "./dados_extraidos_corrigido.json";
+const BITRIX_WEBHOOK =
+  "https://ecosystem.praiastur.com.br/rest/14877/nxxvh6kn35vxl46x/"; // SEU WEBHOOK AQUI
+const JSON_PATH = "./dados_para_bitrix.json";
 const DEAL_TITLE_BASE = "Prospeccao_indicação";
 const PIPELINE_ID = 89; // 🎯 ID do Funil
-const STAGE_ID = "C89:PREPAYMENT_INVOIC"; // 🎯 ID do Estágio
+const STAGE_ID = "C89:UC_HPXUQG";
 
 // Função para adicionar um pequeno delay e não sobrecarregar a API
 function delay(ms) {
@@ -86,6 +87,8 @@ async function criarNegocioParaContato(contato) {
         TITLE: tituloFinal,
         CONTACT_ID: contato.ID,
         COMPANY_ID: contato.COMPANY_ID || 0,
+        CATEGORY_ID: PIPELINE_ID,
+        STAGE_ID: STAGE_ID,
       },
     });
     console.log(
@@ -106,7 +109,7 @@ async function processarContatosDoJson() {
     return;
   }
   const contatosValidos = dados.filter(
-    (c) => c["Numero do Telefone"] && c["Nome"]
+    (c) => c["Numero do telefone"] && c["Nome"]
   );
   console.log(
     `Arquivo JSON lido. ${contatosValidos.length} contatos com telefone encontrados.`
@@ -115,7 +118,7 @@ async function processarContatosDoJson() {
 
   for (const contatoJson of contatosValidos) {
     const nomeJson = contatoJson["Nome"];
-    const telefoneJson = contatoJson["Numero do Telefone"];
+    const telefoneJson = contatoJson["Numero do telefone"];
 
     console.log(`-----------------------------------------------------`);
     console.log(`🔎 Processando: ${nomeJson} - ${telefoneJson}`);
