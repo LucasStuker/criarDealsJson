@@ -1,12 +1,11 @@
 import fs from "fs";
 import axios from "axios";
 
-const BITRIX_WEBHOOK =
-  "https://ecosystem.praiastur.com.br/rest/14877/nxxvh6kn35vxl46x/"; // SEU WEBHOOK AQUI
+const BITRIX_WEBHOOK = ""; // SEU WEBHOOK AQUI
 const JSON_PATH = "./dados_para_bitrix.json";
-const DEAL_TITLE_BASE = "Prospeccao_indicação";
-const PIPELINE_ID = 89; // 🎯 ID do Funil
-const STAGE_ID = "C89:UC_HPXUQG";
+const DEAL_TITLE_BASE = ""; //Titulo
+const PIPELINE_ID = ""; // 🎯 ID do Funil
+const STAGE_ID = ""; // Estágio do funil que voce quer criar os deals
 
 // Função para adicionar um pequeno delay e não sobrecarregar a API
 function delay(ms) {
